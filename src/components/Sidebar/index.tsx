@@ -1,23 +1,37 @@
-import { Search } from 'lucide-react'
+'use client'
+
+import * as Collapsible from '@radix-ui/react-collapsible'
+import { Menu, Search } from 'lucide-react'
+import { Button } from '../Button'
+import * as Input from '../Input'
 import { FooterNavigation } from './FooterNavigation'
 import { Logo } from './Logo'
 import { MainNavigation } from './MainNavigation'
 
 export function Sidebar() {
   return (
-    <aside className="flex flex-col gap-6 border-r border-zinc-200 px-5 py-8">
-      <Logo />
-
-      <div className="mx-1 flex w-full items-center gap-2 rounded-lg border border-zinc-300 px-3 py-2 shadow-sm">
-        <Search className="h-5 w-5 text-zinc-500" />
-        <input
-          className="flex-1 border-0 bg-transparent p-0 text-zinc-900 placeholder-zinc-600"
-          placeholder="Search"
-        />
+    <Collapsible.Root className="fixed left-0 right-0 top-0 z-20 flex flex-col gap-6 border-b border-zinc-200 bg-white p-4 data-[state=open]:bottom-0 lg:right-auto lg:w-80 lg:border-r lg:px-5 lg:py-8 lg:data-[state=closed]:bottom-0 dark:border-zinc-800 dark:bg-zinc-900 ">
+      <div className="flex items-center justify-between">
+        <Logo />
+        <Collapsible.Trigger asChild className="lg:hidden">
+          <Button variant="ghost">
+            <Menu className="h-6 w-6" />
+          </Button>
+        </Collapsible.Trigger>
       </div>
-      <MainNavigation />
-
-      <FooterNavigation />
-    </aside>
+      <Collapsible.Content
+        forceMount
+        className="flex flex-1 flex-col gap-6 data-[state=closed]:hidden lg:data-[state=closed]:flex"
+      >
+        <Input.Root>
+          <Input.Prefix>
+            <Search className="h-5 w-5 text-zinc-500" />
+          </Input.Prefix>
+          <Input.Control placeholder="Search" />
+        </Input.Root>
+        <MainNavigation />
+        <FooterNavigation />
+      </Collapsible.Content>
+    </Collapsible.Root>
   )
 }

@@ -1,5 +1,5 @@
 import { Cog, LifeBuoy } from 'lucide-react'
-import { NavItem } from '../components/NavItem'
+import { NavItem } from '../MainNavigation/NavItem'
 import { Profile } from './Profile'
 import { UsedSpaceWidget } from './UsedSpaceWidget'
 
@@ -13,7 +13,7 @@ export function FooterNavigation() {
 
       <UsedSpaceWidget />
 
-      <div className="h-px bg-zinc-200" />
+      <div className="h-px bg-zinc-200 dark:bg-zinc-700" />
 
       <Profile />
     </div>
